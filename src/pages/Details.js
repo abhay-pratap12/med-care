@@ -1,9 +1,44 @@
 import React, { useState } from "react";
 import Nav from "../components/Nav";
 import CardContainer from "../components/CardContainer";
+// import { v4 } from "uuid";
+import { ref, uploadBytes } from "firebase/storage";
+import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
+import { auth, db, storage } from "../utils/firebase";
+import { useSelector } from "react-redux";
+import { updateProfile } from "firebase/auth";
 
 const Details = () => {
   const [track, setTrack] = useState(null);
+  const userData = useSelector((store)=>store.user)
+  const handleTracker = async () => {
+    //to upload image to storage
+    // const val = v4();
+    // const imgRef = ref(storage, `files/${val}`);
+    // uploadBytes(imgRef, img);
+
+    try {
+      const docRef = await addDoc(collection(db, `tracker`), {
+        // TitleOfBook: title,
+        // Author: author,
+        // Discription: desc,
+        // Rating: rate,
+        // ImgVal: val,
+        // instaId: ig,
+        track:track,
+        time:Date.now(),
+        userId: userData.userId,
+        // profileImg: userData.profilePic,
+        userName: userData.userName
+      });
+
+      await updateDoc(docRef, {
+        uId: docRef.id,
+      });
+    } catch (e) {
+      prompt("Error adding document: ", e);
+    }
+  };
 
   return (
     <>
@@ -24,10 +59,10 @@ const Details = () => {
             id="name"
           ></input>
         </div>
+        <button onClick={handleTracker}>Add</button>
       </div>
       <CardContainer />
     </>
   );
 };
-
 export default Details;
