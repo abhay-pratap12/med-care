@@ -5,9 +5,12 @@
   box-sizing: border-box;
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
+
+
 }
 body {
   background: #e5e5e5;
+  background-color: wheat;
 }
 .btn {
   padding: 7px 20px;
@@ -40,6 +43,7 @@ h1 {
 h2 {
   font-size: 32px;
   font-weight: 900;
+  
 }
 h3 {
   font-size: 28px;
@@ -95,7 +99,7 @@ h6 {
   color: #111;
   letter-spacing: 2px;
 }
-.hero .banner span {
+.hero .banner  span{
   position: absolute;
   right: -300px;
   top: -200px;
@@ -388,7 +392,7 @@ footer .content div:last-child div svg {
   padding-bottom: 50px;
 }
 .departments h2 {
-  color: gray;
+  color: rgb(38, 85, 50);
   margin-bottom: 30px;
 }
 .card {
