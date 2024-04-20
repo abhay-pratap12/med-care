@@ -11,7 +11,7 @@ const Home = () => {
         <Nav />
         <Hero
         title={
-          "Welcome to ZeeCare Medical Institute | Your Trusted Healthcare Provider"
+          "Welcome to MedCare complete solution . The focus on addressing Diabetes related issues."
         }
         imageUrl={"/hero.png"}
       />
