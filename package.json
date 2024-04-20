@@ -17,6 +17,7 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^10.0.5",
     "toast": "^0.5.4",
+    "v4": "^0.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

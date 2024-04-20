@@ -3,15 +3,17 @@ import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { collection, getDoc, getDocs } from "firebase/firestore";
 import { IMG_URL_profile } from "../utils/constants";
 // import { addBooks, addUserBooks } from "../utils/librarySlice";
-import { addProfilePic, addUserName, adduserId } from "../utils/UserSlice";
+import { addUserName, adduserId } from "../utils/UserSlice";
+import { addTrack } from "../utils/trackSlice";
 
 const Nav = () => {
   const navigate = useNavigate();
+  const userData = useSelector((store)=>store.user)
 
   const dispatch = useDispatch();
   const [userImg, setUserImg] = useState();
@@ -19,14 +21,31 @@ const Nav = () => {
   const [books, setBooks] = useState([]);
   const [userUid, setUserUid] = useState(null);
 
+   // fetching data
+   useEffect(() => {
+    fetchLibraryBook();
+    // .then(()=>filter(books));
+    console.log(books);
+  }, []);
+
+
+
+  const fetchLibraryBook = async () => {
+    const query = await getDocs(collection(db, "tracker"));
+    console.log(query.docs);
+    // setBooks(query.docs);
+    const userTrack = query.docs
+    dispatch(addTrack(userTrack));
+  };
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
         dispatch(addUserName(user.displayName));
-        dispatch(addProfilePic(user.photoURL));
+        // dispatch(addProfilePic(user.photoURL));
         dispatch(adduserId(user.uid));
-        setUserImg(user.photoURL);
+        // setUserImg(user.photoURL);
         setUserUid(user.uid);
         // navigate("/home");
       } else {
@@ -41,6 +60,9 @@ const Nav = () => {
     // fetchLibraryBook();
     // .then(()=>filter(books));
     // console.log(books);
+    // updateProfile(auth.currentUser, {
+    //     photoURL: [0],
+    //   });
   }, []);
 
 //   const fetchLibraryBook = async () => {
@@ -166,10 +188,10 @@ const Nav = () => {
           <div className="lg:block hidden">
             <Link to={"/profile"}>
               <div>
-                <img
+                {/* <img
                   className="h-10 w-10 flex-shrink-0 rounded-full object-cover cursor-pointer"
                   src={IMG_URL_profile + userImg + "?alt=media"}
-                />
+                /> */}
               </div>
             </Link>
           </div>
