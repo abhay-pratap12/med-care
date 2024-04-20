@@ -54,37 +54,7 @@ const Nav = () => {
       }
     });
   }, []);
-
-  // fetching data
-  useEffect(() => {
-    // fetchLibraryBook();
-    // .then(()=>filter(books));
-    // console.log(books);
-    // updateProfile(auth.currentUser, {
-    //     photoURL: [0],
-    //   });
-  }, []);
-
-//   const fetchLibraryBook = async () => {
-//     const query = await getDocs(collection(db, "readers"));
-//     console.log(query.docs);
-//     setBooks(query.docs);
-//     // dispatch(addBooks(query.docs));
-//   };
-
-  // const filter = (a) =>{
-  //   console.log(a)
-  //   const filterQuery = a.filter(
-  //     (r) => r._document.data.value.mapValue.fields.userId.stringValue == userUid
-  //   );
-  //   console.log(filterQuery);
-  //   dispatch(addUserBooks(filterQuery))
-  // }
-
-//   const handleHambuger = () => {
-//     hide == "hidden" ? setHide("block") : setHide("hidden");
-//   };
-
+  
   return (
     <div>
       <div className="relative w-full lg:px-24 px-2 bg-white">
