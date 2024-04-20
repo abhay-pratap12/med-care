@@ -1,6 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-
-
+import "./App.css";
 // import Profile from "./Pages/Profile";
 
 import { Provider } from "react-redux";
